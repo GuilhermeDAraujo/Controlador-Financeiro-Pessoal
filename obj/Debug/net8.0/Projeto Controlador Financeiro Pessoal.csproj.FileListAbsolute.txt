@@ -1,0 +1,30 @@
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\appsettings.Development.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\appsettings.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.staticwebassets.runtime.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.exe
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.deps.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.runtimeconfig.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.dll
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\bin\Debug\net8.0\Projeto Controlador Financeiro Pessoal.pdb
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.GeneratedMSBuildEditorConfig.editorconfig
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.AssemblyInfoInputs.cache
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.AssemblyInfo.cs
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.csproj.CoreCompileInputs.cache
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.MvcApplicationPartsAssemblyInfo.cache
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.RazorAssemblyInfo.cache
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.RazorAssemblyInfo.cs
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets.build.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets.development.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets\msbuild.Projeto Controlador Financeiro Pessoal.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets\msbuild.build.Projeto Controlador Financeiro Pessoal.props
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Projeto Controlador Financeiro Pessoal.props
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Projeto Controlador Financeiro Pessoal.props
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\scopedcss\bundle\Projeto Controlador Financeiro Pessoal.styles.css
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\scopedcss\projectbundle\Projeto Controlador Financeiro Pessoal.bundle.scp.css
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.dll
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\refint\Projeto Controlador Financeiro Pessoal.dll
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.pdb
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\Projeto Controlador Financeiro Pessoal.genruntimeconfig.cache
+D:\Guilherme\Projeto Controlador Financeiro Pessoal\obj\Debug\net8.0\ref\Projeto Controlador Financeiro Pessoal.dll
