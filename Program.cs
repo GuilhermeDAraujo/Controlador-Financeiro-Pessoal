@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Projeto_Controlador_Financeiro_Pessoal.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ControladorFinanceiroContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
