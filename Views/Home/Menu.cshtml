@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Dashboard</h1>
+        
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-4 mb-4">
+                <a href="../Banco/Index">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                    </div>
+                    <h5>Cadastro de Bancos</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 mb-4">
+                <a href="../Pessoa/Index">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-user-cog fa-3x"></i>
+                    </div>
+                    <h5>Cadastro de Pessoas</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 mb-4">
+                <a href="../Lancamento/Index">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-cash-register fa-3x"></i>
+                    </div>
+                    <h5>Registro de Compras</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 mb-4">
+                <a href="../Relatorio/Index">
+                    <div class="icon-container mb-2">
+                        <i class="fas fa-chart-line fa-3x"></i>
+                    </div>
+                    <h5>Relatórios</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

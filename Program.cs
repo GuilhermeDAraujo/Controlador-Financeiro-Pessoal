@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Projeto_Controlador_Financeiro_Pessoal.Context;
+using Projeto_Controlador_Financeiro_Pessoal.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddDbContext<ControladorFinanceiroContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<PessoaServices>();
 
 var app = builder.Build();
 
