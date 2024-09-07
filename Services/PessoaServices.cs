@@ -7,39 +7,34 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
     public class PessoaServices
     {
         private readonly ControladorFinanceiroContext _context;
+
         public PessoaServices(ControladorFinanceiroContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Pessoa>> ListarTodasPessoas()
+        public async Task<List<Pessoa>> ListarTodasPessoasAsync()
         {
             return await _context.Pessoas.OrderBy(p => p.Nome).ToListAsync();
         }
 
         public async Task<Pessoa> CreateAsyn(Pessoa pessoa)
         {
-            if (pessoa != null)
-            {
-                _context.Pessoas.Add(pessoa);
-                await _context.SaveChangesAsync();
-            }
+            await _context.AddAsync(pessoa);
+            await _context.SaveChangesAsync();
             return pessoa;
         }
 
         public async Task<Pessoa> UpdateAsyn(Pessoa pessoa)
         {
-            if (_context.Pessoas.Any(p => p.Id == pessoa.Id))
-            {
-                _context.Update(pessoa);
-                await _context.SaveChangesAsync();
-            }
+            _context.Update(pessoa);
+            await _context.SaveChangesAsync();
             return pessoa;
         }
 
         public async Task<Pessoa> DeleteAsyn(Pessoa pessoa)
         {
-            if (_context.Pessoas.Any(p => p.Id == pessoa.Id))
+            if (await _context.Pessoas.AnyAsync(p => p.Id == pessoa.Id))
             {
                 _context.Remove(pessoa);
                 await _context.SaveChangesAsync();
@@ -50,6 +45,11 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
         public async Task<Pessoa> BuscarPessoaAsyn(int id)
         {
             return await _context.Pessoas.FindAsync(id);
+        }
+
+        public async Task<bool> PessoaJaExsiteAsync(string cpf)
+        {
+            return await _context.Pessoas.AnyAsync(p => p.CPF == cpf);
         }
     }
 }

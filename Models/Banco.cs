@@ -13,7 +13,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Models
         [StringLength(15, MinimumLength = 4, ErrorMessage ="O Tamanho do Nome de contet entre {2} e {1} caracteres!")]
         public string NomeBanco {get;set;}
 
-        public ICollection<PessoaBanco> PessoaBancos {get;set;}
-        public ICollection<Lancamento> Lancamentos {get;set;}
+        public ICollection<PessoaBanco> PessoaBancos {get;set;} = new List<PessoaBanco>();
+        public ICollection<Lancamento> Lancamentos {get;set;} = new List<Lancamento>();
     }
 }

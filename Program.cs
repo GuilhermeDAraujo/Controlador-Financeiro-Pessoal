@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ControladorFinanceiroContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<PessoaServices>();
+builder.Services.AddScoped<BancoServices>();
 
 var app = builder.Build();
 

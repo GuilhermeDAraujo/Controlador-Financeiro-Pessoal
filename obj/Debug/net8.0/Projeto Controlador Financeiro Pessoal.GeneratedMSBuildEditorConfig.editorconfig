@@ -18,6 +18,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Guilherme\Projeto Controlador Financeiro Pessoal
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Guilherme/Projeto Controlador Financeiro Pessoal/Views/Banco/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Guilherme/Projeto Controlador Financeiro Pessoal/Views/Banco/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Guilherme/Projeto Controlador Financeiro Pessoal/Views/Banco/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Guilherme/Projeto Controlador Financeiro Pessoal/Views/Banco/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFuY29cVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Guilherme/Projeto Controlador Financeiro Pessoal/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

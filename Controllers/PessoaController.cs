@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Projeto_Controlador_Financeiro_Pessoal.Models;
 using Projeto_Controlador_Financeiro_Pessoal.Services;
 
@@ -16,7 +15,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _pessoaServices.ListarTodasPessoas());
+            return View(await _pessoaServices.ListarTodasPessoasAsync());
         }
 
         public async Task<IActionResult> Create()
@@ -30,6 +29,11 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF))
+                {
+                    ModelState.AddModelError("", "CPF já cadastrado.");
+                    return View(pessoa);
+                }
                 await _pessoaServices.CreateAsyn(pessoa);
                 return RedirectToAction(nameof(Index));
             }
@@ -38,12 +42,12 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
 
         public async Task<IActionResult> Update(int id)
         {
-            if (id == null)
-                return RedirectToAction(nameof(Index));
-
             var pessoaBanco = await _pessoaServices.BuscarPessoaAsyn(id);
             if (pessoaBanco == null)
+            {
+                ModelState.AddModelError("", "Pessoa não encontrado.");
                 return RedirectToAction(nameof(Index));
+            }
 
             return View(pessoaBanco);
         }
@@ -54,6 +58,11 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF))
+                {
+                    ModelState.AddModelError("", "CPF já cadastrado.");
+                    return View(pessoa);
+                }
                 await _pessoaServices.UpdateAsyn(pessoa);
                 return RedirectToAction(nameof(Index));
             }
@@ -62,12 +71,12 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-                return RedirectToAction(nameof(Index));
-
             var pessoaBanco = await _pessoaServices.BuscarPessoaAsyn(id);
             if (pessoaBanco == null)
+            {
+                ModelState.AddModelError("", "Pessoa não encontrado.");
                 return RedirectToAction(nameof(Index));
+            }
 
             return View(pessoaBanco);
         }
