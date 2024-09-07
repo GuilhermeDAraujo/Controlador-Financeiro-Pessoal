@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Projeto Controlador Financeiro Pessoal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b14e69987cf863101ea6c2cff59c5bc94ac765ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Projeto Controlador Financeiro Pessoal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Projeto Controlador Financeiro Pessoal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
