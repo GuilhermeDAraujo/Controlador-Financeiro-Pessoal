@@ -29,7 +29,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF))
+                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF, pessoa.Id))
                 {
                     ModelState.AddModelError("", "CPF já cadastrado.");
                     return View(pessoa);
@@ -58,7 +58,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF))
+                if (await _pessoaServices.PessoaJaExsiteAsync(pessoa.CPF, pessoa.Id))
                 {
                     ModelState.AddModelError("", "CPF já cadastrado.");
                     return View(pessoa);

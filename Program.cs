@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<PessoaServices>();
 builder.Services.AddScoped<BancoServices>();
+builder.Services.AddScoped<LancamentoService>();
 
 var app = builder.Build();
 

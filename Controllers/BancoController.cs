@@ -48,7 +48,6 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
                 ModelState.AddModelError("", "Banco não encontrado.");
                 return RedirectToAction(nameof(Index));
             }
-
             return View(banco);
         }
 

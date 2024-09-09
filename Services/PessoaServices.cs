@@ -47,9 +47,9 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
             return await _context.Pessoas.FindAsync(id);
         }
 
-        public async Task<bool> PessoaJaExsiteAsync(string cpf)
+        public async Task<bool> PessoaJaExsiteAsync(string cpf, int id)
         {
-            return await _context.Pessoas.AnyAsync(p => p.CPF == cpf);
+            return await _context.Pessoas.AnyAsync(p => p.CPF == cpf && p.Id != id);
         }
     }
 }

@@ -13,10 +13,6 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
             _context = context;
         }
 
-        public async Task<List<Banco>> ListarTodosBancosAsync()
-        {
-            return await _context.Bancos.OrderBy(b => b.NomeBanco).ToListAsync();
-        }
 
         public async Task<Banco> CreateAsync(Banco banco)
         {
@@ -40,6 +36,11 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
                 await _context.SaveChangesAsync();
             }
             return banco;
+        }
+        
+        public async Task<List<Banco>> ListarTodosBancosAsync()
+        {
+            return await _context.Bancos.OrderBy(b => b.NomeBanco).ToListAsync();
         }
 
         public async Task<Banco> BuscarBancoAsync(int id)
