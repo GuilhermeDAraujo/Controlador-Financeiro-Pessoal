@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Projeto_Controlador_Financeiro_Pessoal.Context;
 using Projeto_Controlador_Financeiro_Pessoal.Enums;
@@ -19,21 +20,51 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
             return await _context.Lancamentos
                 .Include(p => p.Pessoa)
                 .Include(b => b.Banco)
+                .Include(dp => dp.DataPagamentos)
                 .OrderByDescending(l => l.DataCompra)
                 .ToListAsync();
         }
 
-        public async Task<Lancamento> CreateAsync(Lancamento lancamento)
+        public async Task<bool> CreateAsync(Lancamento lancamento)
         {
+            if (lancamento == null)
+                return false;
+
             await _context.Lancamentos.AddAsync(lancamento);
             await _context.SaveChangesAsync();
-            return lancamento;
+            await AdicionarParcelaAsync(lancamento);
+            return true;
         }
 
-        public async Task<Lancamento> UpdateAsync(Lancamento lancamento)
+        public async Task AdicionarParcelaAsync(Lancamento lancamento)
         {
-            _context.Update(lancamento);
-            await _context.SaveChangesAsync();
+            var novasParcelas = new List<DataPagamento>();
+            if (lancamento.NumeroParcelas > 0)
+            {
+                for (int i = 0; i < lancamento.NumeroParcelas; i++)
+                {
+                    DateTime dataPagamento = lancamento.DataCompra.AddMonths(i + 1); //Adiciona mais 1 mes na Data da Compra
+                    decimal valorParcela = lancamento.ValorTotal / lancamento.NumeroParcelas; //Calcula o valor de cada Parcela
+
+                    novasParcelas.Add(new DataPagamento
+                    {
+                        LancamentoId = lancamento.Id,
+                        Data = dataPagamento,
+                        ValorParcelado = valorParcela
+                    });
+                }
+                await _context.DataPagamentos.AddRangeAsync(novasParcelas);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<Lancamento> DeleteAsync(Lancamento lancamento)
+        {
+            if (await _context.Lancamentos.AnyAsync(l => l.Id == lancamento.Id))
+            {
+                _context.Remove(lancamento);
+                await _context.SaveChangesAsync();
+            }
             return lancamento;
         }
 
@@ -63,10 +94,5 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
         {
             return await _context.Lancamentos.AnyAsync(l => l.Id == id);
         }
-
-        public async Task<Lancamento> BuscarLanca(int id)
-        {
-            return await _context.Lancamentos.FindAsync(id);
-        }   
     }
 }

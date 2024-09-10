@@ -23,6 +23,7 @@
                     <th class="text-center">Data da Compra</th>
                     <th class="text-center">Tipo de Pagamento</th>
                     <th class="text-center">Descrição</th>
+                    <th class="text-center">Numero de Parcelas</th>
                     <th class="text-center">Total</th>
                     <th class="text-center">Ações</th>
                 </tr>
@@ -38,7 +39,7 @@
                             @item.Banco?.NomeBanco
                         </td>
                         <td class="text-center">
-                            @Html.DisplayFor(m => item.DataCompra)
+                            @item.DataCompra.ToString("dd/MM/yyyy")
                         </td>
                         <td class="text-center">
                             @item.TipoPagamento
@@ -47,10 +48,19 @@
                             @item.Descricao
                         </td>
                         <td class="text-center">
-                            R$ @item.Valor.ToString("F2")
+                            @if(item.NumeroParcelas != null)
+                            {
+                                @item.NumeroParcelas
+                            }
+                            else
+                            {
+                                <span>--</span> 
+                            }
                         </td>
                         <td class="text-center">
-                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-success">Editar</a>
+                            R$ @item.ValorTotal.ToString("F2")
+                        </td>
+                        <td class="text-center">
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
@@ -66,6 +76,5 @@
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
 

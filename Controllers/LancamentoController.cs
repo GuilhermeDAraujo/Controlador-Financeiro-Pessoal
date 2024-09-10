@@ -31,19 +31,22 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _lancamentoService.LancamentoJaExiteAsyn(lancamento.Id))
+                bool sucesso = await _lancamentoService.CreateAsync(lancamento);
+
+                if (!sucesso)
                 {
-                    ModelState.AddModelError("", "O lançamento já existe");
+                    ModelState.AddModelError("", "Lançamento não realizado");
+                    await CarregarViewBag();
                     return View(lancamento);
                 }
-                await _lancamentoService.CreateAsync(lancamento);
                 return RedirectToAction(nameof(Index));
             }
+
             await CarregarViewBag();
             return View(lancamento);
         }
 
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var lancamento = await _lancamentoService.BuscarLancamentoPeloIdAsync(id);
             if (lancamento == null)
@@ -57,30 +60,10 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(Lancamento lancamento)
+        public async Task<IActionResult> Delete(Lancamento lancamento)
         {
-            if (ModelState.IsValid)
-            {
-                if (await _lancamentoService.LancamentoJaExiteAsyn(lancamento.Id))
-                {
-                    await _lancamentoService.UpdateAsync(lancamento);
-                    return RedirectToAction(nameof(Index));
-                }
-                ModelState.AddModelError("", "Lançamento não encontrado.");
-            }
-            return View(lancamento);
-        }
-
-        public async Task<IActionResult> Delete(int id)
-        {   
-            var lancamento = await _lancamentoService.BuscarLancamentoPeloIdAsync(id);
-            if(lancamento == null)
-            {
-                ModelState.AddModelError("", "Lançamento não encontrado.");
-                return RedirectToAction(nameof(Index));
-            }
-            await CarregarViewBag();
-            return View(lancamento);
+            await _lancamentoService.DeleteAsync(lancamento);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task CarregarViewBag()

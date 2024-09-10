@@ -9,6 +9,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Context
         public DbSet<Banco> Bancos { get; set; }
         public DbSet<PessoaBanco> PessoaBancos { get; set; }
         public DbSet<Lancamento> Lancamentos { get; set; }
+        public DbSet<DataPagamento> DataPagamentos {get;set;}
 
         public ControladorFinanceiroContext(DbContextOptions<ControladorFinanceiroContext> options) : base(options)
         {
@@ -43,6 +44,11 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Context
             modelBuilder.Entity<Lancamento>()
                 .Property(l => l.TipoPagamento)
                 .HasConversion<int>();
+
+            modelBuilder.Entity<DataPagamento>()
+                .HasOne(l => l.Lancamento)
+                .WithMany(dp => dp.DataPagamentos)
+                .HasForeignKey(p => p.LancamentoId);
         }
     }
 }

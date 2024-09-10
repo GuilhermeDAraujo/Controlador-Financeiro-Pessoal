@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto_Controlador_Financeiro_Pessoal.Context;
 
@@ -11,9 +12,11 @@ using Projeto_Controlador_Financeiro_Pessoal.Context;
 namespace Projeto_Controlador_Financeiro_Pessoal.Migrations
 {
     [DbContext(typeof(ControladorFinanceiroContext))]
-    partial class ControladorFinanceiroContextModelSnapshot : ModelSnapshot
+    [Migration("20240909165846_AddValorLancamento")]
+    partial class AddValorLancamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

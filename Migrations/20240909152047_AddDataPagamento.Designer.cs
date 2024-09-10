@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto_Controlador_Financeiro_Pessoal.Context;
 
@@ -11,9 +12,11 @@ using Projeto_Controlador_Financeiro_Pessoal.Context;
 namespace Projeto_Controlador_Financeiro_Pessoal.Migrations
 {
     [DbContext(typeof(ControladorFinanceiroContext))]
-    partial class ControladorFinanceiroContextModelSnapshot : ModelSnapshot
+    [Migration("20240909152047_AddDataPagamento")]
+    partial class AddDataPagamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Migrations
                     b.Property<int>("LancamentoId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ValorParcelado")
+                    b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -91,9 +94,6 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Migrations
 
                     b.Property<int>("TipoPagamento")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

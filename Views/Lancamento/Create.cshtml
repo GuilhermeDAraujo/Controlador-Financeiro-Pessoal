@@ -4,43 +4,66 @@
 
 <form asp-action="Create" class="container">
     <div class="row">
+
         <div class="col-md-6 mb-3">
-            <label asp-for="PessoaId" class="form-label"><strong>Pessoa</strong></label>
-            <select asp-for="PessoaId" asp-items="@ViewBag.Pessoa" class="form-control"></select>
+            <label asp-for="PessoaId" class="form-label fw-bold">Pessoa</label>
+            <select asp-for="PessoaId" asp-items="@ViewBag.Pessoa" class="form-select"></select>
         </div>
+
         <div class="col-md-6 mb-3">
-            <label asp-for="BancoId" class="form-label"><strong>Banco</strong></label>
-            <select asp-for="BancoId" asp-items="@ViewBag.Banco" class="form-control"></select>
+            <label asp-for="BancoId" class="form-label fw-bold">Banco</label>
+            <select asp-for="BancoId" asp-items="@ViewBag.Banco" class="form-select"></select>
         </div>
     </div>
 
     <div class="row">
+
         <div class="col-md-6 mb-3">
-            <label asp-for="DataCompra" class="form-label"><strong>Data da Venda</strong></label>
-            <input asp-for="DataCompra" class="form-control"/>
+            <label asp-for="DataCompra" class="form-label fw-bold">Data da Venda</label>
+            <input asp-for="DataCompra" class="form-control" />
             <span asp-validation-for="DataCompra" class="text-danger"></span>
         </div>
+
         <div class="col-md-6 mb-3">
-            <label asp-for="Valor" class="form-label"><strong>Valor</strong></label>
-            <input asp-for="Valor" class="form-control" />
-            <span asp-validation-for="Valor" class="text-danger"></span>
+            <label asp-for="ValorTotal" class="form-label fw-bold">Valor</label>
+            <input asp-for="ValorTotal" class="form-control" placeholder="Digite o Valor da Compra"/>
+            <span asp-validation-for="ValorTotal" class="text-danger"></span>
         </div>
     </div>
 
     <div class="row">
+
         <div class="col-md-6 mb-3">
-            <label asp-for="TipoPagamento" class="form-label"><strong>Tipo do Pagamento</strong></label>
-            <select asp-for="TipoPagamento" asp-items="@ViewBag.TipoPagamento" class="form-control"></select>
+            <label asp-for="TipoPagamento" class="form-label fw-bold">Tipo de Pagamento</label>
+            <select asp-for="TipoPagamento" asp-items="@ViewBag.TipoPagamento" class="form-select" id="tipoPagamento"
+                onchange="alternarParcelas()"></select>
         </div>
+
         <div class="col-md-6 mb-3">
-            <label asp-for="Descricao" class="form-label"><strong>Descrição</strong></label>
-            <input asp-for="Descricao" class="form-control"/>
+            <label asp-for="Descricao" class="form-label fw-bold">Descrição</label>
+            <input asp-for="Descricao" class="form-control" placeholder="Digite o Descrição da Compra"/>
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="NumeroParcelas" class="form-label fw-bold">Número de Parcelas</label>
+            <input asp-for="NumeroParcelas" class="form-control" id="numeroParcelas" disabled>
+            <span asp-validation-for="NumeroParcelas" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="parcelamentoCheckbox" onclick="alternarParcelas()">
+                <label class="form-check-label fw-bold" for="parcelamentoCheckbox">Compra é Parcelada?</label>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-between mt-4">
-        <button type="submit" class="btn btn-primary w-100">Salvar</button>
-        <a asp-action="Index" class="btn btn-success w-100 me-2">Voltar</a>
+        <button type="submit" class="btn btn-primary w-100 me-2">Salvar</button>
+        <a asp-action="Index" class="btn btn-success w-100">Voltar</a>
     </div>
 </form>
 @if (!ViewData.ModelState.IsValid)
@@ -49,3 +72,43 @@
         @Html.ValidationSummary(false, "Corrija os seguintes erros: ")
     </div>
 }
+<script>
+    //Json enviado para a controller
+    const lancamento = {
+        Lancamento: {
+            PessoaId: document.getElementById('PessoaId').value,
+            BancoId: document.getElementById('BancoId').value,
+            DataCompra: document.getElementById('DataCompra').value,
+            TipoPagamento: document.getElementById('TipoPagamento').value,
+            Descricao: document.getElementById('Descricao').value,
+            NumeroParcelas: parseInt(document.getElementById('NumeroParcelas').value),
+            ValorTotal: parseFloat(document.getElementById('ValorTotal').value)
+        }
+    }
+
+    const jsonEnviar = JSON.stringify(lancamento)
+
+    fetch('/Lancamento/Create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonEnviar
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Erro', error));
+
+    // Função para exibir ou ocultar o campo "Número de Parcelas" com base no checkbox
+    function alternarParcelas() {
+        var checkbox = document.getElementById('parcelamentoCheckbox');
+        var parcelasRow = document.getElementById('numeroParcelas');
+        if (checkbox.checked) {
+            numeroParcelas.disabled = false;// Exibe o campo "Número de Parcelas"
+            numeroParcelas.value = 1;
+        } else {
+            numeroParcelas.disabled = true; // Oculta o campo "Número de Parcelas"
+            numeroParcelas.value = 0;
+        }
+    }
+</script>
