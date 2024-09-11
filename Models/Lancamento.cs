@@ -7,7 +7,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Informe a data da compra.")]
+        [Required(ErrorMessage = "Informe a Data da realização da Compra.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataCompra { get; set; }

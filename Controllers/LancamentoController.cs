@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Projeto_Controlador_Financeiro_Pessoal.Enums;
 using Projeto_Controlador_Financeiro_Pessoal.Models;
 using Projeto_Controlador_Financeiro_Pessoal.Services;
 
@@ -29,6 +30,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Lancamento lancamento)
         {
+            ValidarParcelamentoCredito(lancamento);
             if (ModelState.IsValid)
             {
                 bool sucesso = await _lancamentoService.CreateAsync(lancamento);
@@ -51,7 +53,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
             var lancamento = await _lancamentoService.BuscarLancamentoPeloIdAsync(id);
             if (lancamento == null)
             {
-                ModelState.AddModelError("", "Lançamento não encontrado.");
+                ModelState.AddModelError("", "Parcelamento disponível apenas para compras no crédito");
                 return RedirectToAction(nameof(Index));
             }
             await CarregarViewBag();
@@ -71,6 +73,14 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
             ViewBag.Pessoa = new SelectList(await _lancamentoService.BuscarTodasPessoasAsync(), "Id", "Nome");
             ViewBag.Banco = new SelectList(await _lancamentoService.BuscarTodosBancosAsync(), "Id", "NomeBanco");
             ViewBag.TipoPagamento = new SelectList(_lancamentoService.BuscarTodosTiposPagamentos());
+        }
+
+        public void ValidarParcelamentoCredito(Lancamento lancamento)
+        {
+            if (lancamento.NumeroParcelas > 0 && lancamento.TipoPagamento != TipoPagamento.Credito)
+            {
+                ModelState.AddModelError("", "Compra parcelada só pode ser no crédito");
+            }
         }
     }
 }

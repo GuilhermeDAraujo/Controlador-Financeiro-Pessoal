@@ -1,0 +1,99 @@
+@model Projeto_Controlador_Financeiro_Pessoal.Models.Relatorio
+
+<h2 class="text-center mb-4">Relatório de Vendas</h2>
+
+<form asp-action="CarteiraDebito" class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="DataInicio"><strong>Data Inicial</strong></label>
+                <input type="date" id="DataInicio" name="DataInicio" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="DataFinal"><strong>Data Final</strong></label>
+                <input type="date" id="DataFinal" name="DataFinal" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="PessoaId" class="form-label fw-bold">Pessoa</label>
+            <select asp-for="PessoaId" asp-items="@ViewBag.Pessoa" class="form-select">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="BancoId" class="form-label fw-bold">Banco</label>
+            <select asp-for="BancoId" asp-items="@ViewBag.Banco" class="form-select">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
+</form>
+
+<br>
+
+@if (Model.Lancamentos != null && Model.Lancamentos.Any())
+{
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Pessoa</th>
+                    <th class="text-center">Banco</th>
+                    <th class="text-center">Data da Compra</th>
+                    <th class="text-center">Tipo de Pagamento</th>
+                    <th class="text-center">Descrição</th>
+                    <th class="text-center">Numero de Parcelas</th>
+                    <th class="text-center">Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Lancamentos)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @item.Pessoa?.Nome
+                        </td>
+                        <td class="text-center">
+                            @item.Banco?.NomeBanco
+                        </td>
+                        <td class="text-center">
+                            @item.DataCompra.ToString("dd/MM/yyyy")
+                        </td>
+                        <td class="text-center">
+                            @item.TipoPagamento
+                        </td>
+                        <td class="text-center">
+                            @item.Descricao
+                        </td>
+                        <td class="text-center">
+                            @item.NumeroParcelas
+                        </td>
+                        <td class="text-center">
+                            R$ @item.ValorTotal.ToString("F2")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-end mt-3" style="font-size: 22px;">
+            <strong>Total: R$ @Model.TotalAVista.ToString("F2")</strong>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center text-primary mt-4">
+        <strong>
+            <p>Nenhuma venda encontrada para o período selecionado, por favor verifique os filtros.</p>
+        </strong>
+    </div>
+}
+
+<br>
+<div class="container">
+    <a asp-action="Index" class="btn btn-success w-100">Voltar</a>
+</div>
