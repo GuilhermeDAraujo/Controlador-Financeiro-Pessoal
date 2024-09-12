@@ -13,7 +13,7 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
             _context = context;
         }
 
-        public async Task<Relatorio> RelatorioComprasAVista(Relatorio relatorio)
+        public async Task<Relatorio> RelatorioComprasAVistaAsync(Relatorio relatorio)
         {   
             relatorio.Lancamentos = await _context.Lancamentos
                 .Where(l => (!relatorio.DataInicio.HasValue || l.DataCompra >= relatorio.DataInicio)//Data sendo opcional, igual os demais
@@ -23,7 +23,21 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Services
                 .Where(p => p.NumeroParcelas == 0)
                 .Include(p => p.Pessoa)
                 .Include(b => b.Banco)
-                .OrderByDescending(x => x.DataCompra)
+                .OrderBy(x => x.DataCompra)
+                .ToListAsync();
+            return relatorio;
+        }
+
+        public async Task<Relatorio> RelatorioComprasNoCreditoAsync(Relatorio relatorio)
+        {
+            relatorio.DataPagamentos = await _context.DataPagamentos
+                .Where(l => (!relatorio.DataInicio.HasValue || l.Data >= relatorio.DataInicio)
+                    &&(!relatorio.DataFinal.HasValue || l.Data <= relatorio.DataFinal))
+                .Where(l => !relatorio.BancoId.HasValue || l.Lancamento.BancoId == relatorio.BancoId)
+                .Where(l => !relatorio.PessoaId.HasValue || l.Lancamento.PessoaId == relatorio.PessoaId)
+                .Include(p => p.Lancamento.Pessoa)
+                .Include(b => b.Lancamento.Banco)
+                .OrderBy(x => x.Data)
                 .ToListAsync();
             return relatorio;
         }

@@ -30,9 +30,27 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         public async Task<IActionResult> CarteiraDebito(Relatorio relatorio)
         {
             if (relatorio == null)
-                return BadRequest("Relatorio não pode nulo");
+                return BadRequest("Relatório não pode ser nulo");
 
-            relatorio = await _relatorioServices.RelatorioComprasAVista(relatorio);
+            relatorio = await _relatorioServices.RelatorioComprasAVistaAsync(relatorio);
+            await CarregarViewBag();
+            return View(relatorio);
+        }
+
+        public async Task<IActionResult> Credito()
+        {
+            await CarregarViewBag();
+            return View(new Relatorio());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Credito(Relatorio relatorio)
+        {
+            if(relatorio == null)
+                return BadRequest("Relatório não pode ser nulo");
+
+            relatorio = await _relatorioServices.RelatorioComprasNoCreditoAsync(relatorio);
             await CarregarViewBag();
             return View(relatorio);
         }
@@ -41,6 +59,12 @@ namespace Projeto_Controlador_Financeiro_Pessoal.Controllers
         {
             ViewBag.Pessoa = new SelectList(await _relatorioServices.BuscarTodasPessoasAsync(), "Id", "Nome");
             ViewBag.Banco = new SelectList(await _relatorioServices.BuscarTodosBancosAsync(), "Id", "NomeBanco");
+        }
+
+        public void PreservarDataRelatorios(Relatorio relatorio, DateTime? dataInicio, DateTime? dataFinal)
+        {
+            relatorio.DataInicio = dataInicio;
+            relatorio.DataFinal = dataFinal;
         }
     }
 }
